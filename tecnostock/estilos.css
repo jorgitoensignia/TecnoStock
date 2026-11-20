@@ -1,0 +1,196 @@
+/* Estilos de TecnoStock. El diseño de acceso está inspirado en una tarjeta minimalista. */
+body { font-family: 'Segoe UI', Arial, sans-serif; }
+.pagina-login {
+    margin: 0;
+    min-height: 100vh;
+    padding: 16px 20px 45px;
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    color: #1b1b1b;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background:
+        radial-gradient(circle at bottom left, #bfe3dc 0%, transparent 38%),
+        radial-gradient(circle at top left, #d9e8f5 0%, transparent 30%),
+        linear-gradient(135deg, #eef5fb 0%, #d8e8f0 45%, #d7efe8 100%);
+}
+.pagina-login *, .pagina-login *::before, .pagina-login *::after { box-sizing: border-box; }
+.contenedor-login {
+    width: clamp(440px, 38.2vw, 574px);
+    max-width: 100%;
+    margin-top: max(12px, calc(16.3vh - 16px));
+    font-size: clamp(15px, 1.2vw, 18px);
+}
+.tarjeta-login {
+    min-height: clamp(338px, 29.4vw, 441px);
+    padding: clamp(44px, 3.8vw, 57px);
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    border-radius: 0;
+    box-shadow: 0 2px 6px #00000026;
+}
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: clamp(22px, 1.7vw, 26px);
+    font-weight: 600;
+    color: #505050;
+}
+.marca svg { color: #0067b8; flex-shrink: 0; }
+.tarjeta-login h1 {
+    font-size: clamp(24px, 2.1vw, 32px);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+.formulario-login { flex: 1; display: flex; flex-direction: column; }
+.tarjeta-login .form-control {
+    font: inherit;
+    color: #1b1b1b;
+    width: 100%;
+    min-height: 38px;
+    padding: 7px 0;
+    border: 0;
+    border-bottom: 1px solid #777;
+    border-radius: 0;
+    background: #fff;
+}
+.tarjeta-login .form-control:focus { outline: none; border-bottom: 2px solid #0067b8; box-shadow: none; }
+.tarjeta-login .form-control::placeholder { color: #666; opacity: 1; }
+.ayuda-login, .mensaje-error { margin: 18px 0 12px; font-size: .88em; }
+.mensaje-error { color: #b00020; }
+.acciones { display: flex; justify-content: flex-end; margin-top: auto; padding-top: 26px; }
+.boton-ingresar {
+    min-width: clamp(108px, 9.4vw, 141px);
+    min-height: clamp(32px, 2.8vw, 42px);
+    padding: 6px 18px;
+    border: 1px solid #0067b8;
+    border-radius: 0;
+    background: #0067b8;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+.boton-ingresar:hover { background: #005da6; color: #fff; border-color: #005da6; }
+.cuenta-login { display: flex; gap: 8px; align-items: center; margin: -6px 0 14px; font-size: .85em; overflow-wrap: anywhere; }
+.boton-volver { border: 0; background: transparent; color: #333; cursor: pointer; font-size: 24px; line-height: 1; padding: 4px; }
+.boton-volver:hover { background: #eee; }
+.campo-clave { position: relative; }
+.campo-clave .form-control { padding-right: 80px; }
+.ver-clave { position: absolute; right: 0; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: #0067b8; font: inherit; font-size: .78em; cursor: pointer; padding: 6px; }
+.pagina-login button:focus-visible { outline: 2px solid #0067b8; outline-offset: 3px; }
+.aviso {
+    display: flex; align-items: center; gap: 15px;
+    min-height: clamp(48px, 4.2vw, 63px);
+    margin-top: clamp(19px, 1.67vw, 25px);
+    padding: 10px clamp(44px, 3.8vw, 57px);
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    box-shadow: 0 2px 6px #00000020;
+    font-size: .95em;
+}
+.aviso svg { flex-shrink: 0; }
+.pie-login { position: fixed; bottom: 10px; right: 20px; font-size: 12px; }
+@media (max-width: 520px) {
+    .pagina-login { padding: 20px 16px 42px; }
+    .contenedor-login { width: 100%; margin-top: 8vh; }
+    .tarjeta-login { min-height: 330px; padding: 30px 24px; }
+    .aviso { padding: 12px 24px; }
+    .pie-login { position: static; margin-top: 28px; justify-self: end; }
+}
+@media (max-height: 620px) {
+    .contenedor-login { margin-top: 12px; }
+    .pie-login { position: static; margin-top: 20px; justify-self: end; }
+}
+
+/* Botón y ventana de información del sistema. */
+button.aviso {
+    width: 100%;
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 0;
+}
+button.aviso:hover { background: #f5f5f5; }
+.ventana-acerca {
+    width: min(510px, calc(100% - 32px));
+    max-height: calc(100dvh - 32px);
+    overflow: auto;
+    padding: 36px;
+    border: 1px solid #d7d7d7;
+    border-radius: 0;
+    background: #fff;
+    color: #1b1b1b;
+    box-shadow: 0 4px 20px #0003;
+    font-size: 15px;
+    margin: auto;
+}
+.ventana-acerca::backdrop { background: #0006; }
+.ventana-acerca h2 { font-size: 24px; font-weight: 600; margin: 0 0 8px; }
+.version-acerca, .nota-acerca { color: #666; font-size: 13px; }
+.ventana-acerca ul { padding-left: 20px; }
+.ventana-acerca .acciones { padding-top: 10px; }
+@media (max-width: 520px) { .ventana-acerca { padding: 24px; } }
+
+/* Proporciones de la referencia: 574 x 441 a 1500 px de ancho. */
+.pagina-login { display: block; padding: 16.3vh 16px 50px; line-height: 1.4; }
+.contenedor-login { width: clamp(440px,38.27vw,574px); margin: 0 auto; }
+.tarjeta-login { min-height: clamp(338px,29.4vw,441px); }
+.marca { line-height: 1.2; margin-bottom: clamp(20px,1.6vw,24px); }
+.tarjeta-login h1 { margin-bottom: clamp(12px,1vw,15px); }
+.tarjeta-login .form-control { min-height: clamp(36px,2.8vw,42px); padding: 6px 0; }
+.tarjeta-login .form-control:focus { border-bottom: 1px solid #0067b8; }
+.campo-clave .form-control { padding-right: 80px; }
+.ayuda-login, .mensaje-error { margin-top: clamp(16px,1.47vw,22px); font-size: .94em; }
+button.aviso { font: inherit; gap: clamp(15px,1.4vw,21px); }
+.aviso svg { width: clamp(23px,1.9vw,29px); height: clamp(23px,1.9vw,29px); }
+.ventana-acerca:not([open]) { display: none; }
+.pagina-login .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media(max-width:520px) { .pagina-login { padding: 8vh 16px 32px; } .contenedor-login { width: 100%; } .tarjeta-login { min-height:330px; } .pie-login { text-align:right; } }
+@media(max-height:620px) { .pagina-login { padding-top:20px; } .pie-login { text-align:right; } }
+
+/* Ajuste de escala y centrado según la segunda referencia de escritorio. */
+.pagina-login {
+    box-sizing: border-box;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    padding: 20px 16px 48px;
+}
+.contenedor-login {
+    width: 440px;
+    max-width: 100%;
+    margin: 0;
+    font-size: 15px;
+}
+.tarjeta-login {
+    min-height: 338px;
+    padding: 44px;
+}
+.tarjeta-login .marca {
+    font-size: 20px;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+.tarjeta-login .marca svg { width: 23px; height: 23px; }
+.tarjeta-login h1 { font-size: 24px; margin-bottom: 12px; }
+.tarjeta-login .form-control { min-height: 36px; }
+.ayuda-login, .mensaje-error { margin-top: 16px; font-size: 13px; }
+.tarjeta-login .boton-ingresar { min-width: 108px; min-height: 32px; padding: 4px 12px; }
+button.aviso { min-height: 48px; margin-top: 19px; padding: 8px 44px; gap: 16px; font-size: 15px; }
+.aviso svg { width: 23px; height: 23px; }
+@media (max-width: 520px) {
+    .tarjeta-login { padding: 30px 24px; min-height: 310px; }
+    button.aviso { padding: 8px 24px; }
+}
+@media (max-height: 620px), (max-width: 520px) {
+    .pagina-login { align-content: center; padding: 20px 16px; }
+    .pie-login { position: static; margin-top: 20px; justify-self: end; }
+}

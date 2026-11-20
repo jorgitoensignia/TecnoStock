@@ -1,0 +1,11 @@
+<?php
+require __DIR__.'/comun.php';
+$seccion='movimientos'; $tituloPagina='Movimientos'; $error=''; $filas=[]; $tipo=entrada($_GET,'tipo');
+if(!in_array($tipo,['entrada','salida'],true)) $tipo='';
+try { $sql='SELECT m.*,p.codigo,p.nombre AS producto,u.nombre AS usuario FROM movimientos m JOIN productos p ON p.id_producto=m.id_producto JOIN usuarios u ON u.id_usuario=m.id_usuario'; $s=$pdo->prepare($sql.($tipo!==''?' WHERE m.tipo=?':'').' ORDER BY m.fecha_hora DESC,m.id_movimiento DESC'); $s->execute($tipo!==''?[$tipo]:[]); $filas=$s->fetchAll(); }
+catch(PDOException $e) { error_log($e->getMessage()); $error='No fue posible consultar los movimientos.'; }
+require __DIR__.'/cabecera.php'; ?>
+<div class="encabezado"><div><h1>Movimientos de inventario</h1><p>Consulta las entradas y salidas registradas.</p></div><a class="boton-azul" href="movimiento_form.php">+ Nuevo movimiento</a></div>
+<?php aviso(); errorVista($error); ?><section class="tarjeta"><div class="titulo-tarjeta"><?= icono('movimientos') ?><div>Historial de movimientos<small>Registro de existencias y usuario responsable.</small></div></div><div class="contenido modulo">
+<form method="get" class="filtros filtro-simple"><div><label for="tipo">Tipo</label><select class="form-select" id="tipo" name="tipo"><option value="">Todos</option><option value="entrada" <?= $tipo==='entrada'?'selected':'' ?>>Entradas</option><option value="salida" <?= $tipo==='salida'?'selected':'' ?>>Salidas</option></select></div><div class="acciones-form"><button class="boton-azul" type="submit">Filtrar</button><a href="movimientos.php">Limpiar</a></div></form>
+<?php if(!$error): if(!$filas): ?><p class="vacio">No hay movimientos registrados para esta consulta.</p><?php else: ?><div class="tabla-scroll"><table><thead><tr><th>Fecha y hora</th><th>Código</th><th>Producto</th><th>Tipo</th><th>Cantidad</th><th>Usuario</th><th>Observación</th></tr></thead><tbody><?php foreach($filas as $r): ?><tr><td><?= escapar($r['fecha_hora']) ?></td><td><?= escapar($r['codigo']) ?></td><td><?= escapar($r['producto']) ?></td><td><?= escapar(ucfirst($r['tipo'])) ?></td><td><?= escapar($r['cantidad']) ?></td><td><?= escapar($r['usuario']) ?></td><td><?= escapar($r['observacion']) ?></td></tr><?php endforeach; ?></tbody></table></div><?php endif; endif; ?></div></section><?php require __DIR__.'/pie.php'; ?>
