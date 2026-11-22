@@ -1,74 +1,67 @@
-# TecnoStock — Sistema web de inventario
+# Sistema de Inventario TecnoStock
 
-Proyecto académico de gestión de inventario para accesorios tecnológicos. Está construido con **PHP**, **MariaDB/MySQL**, **PDO**, **HTML**, **CSS**, **JavaScript** y **Bootstrap**. Se ejecuta localmente con **XAMPP**.
+## 1. Descripción del problema
 
-## Funcionalidades implementadas
+TecnoStock es un emprendimiento dedicado a la venta de
+accesorios tecnológicos. Actualmente utiliza planillas
+para administrar su inventario, lo que genera códigos
+duplicados, errores en las cantidades y dificultades
+para conocer el stock real de los productos.
 
-- Inicio de sesión en dos pasos (correo electrónico y contraseña), con verificación de hash de contraseña.
-- Panel principal con indicadores de productos activos, categorías, movimientos y alertas.
-- Registro, búsqueda, filtrado y edición de productos.
-- Desactivación lógica de productos para conservar su historial.
-- Consulta de categorías y de productos por categoría.
-- Registro de entradas y salidas, con validación del stock y actualización transaccional.
-- Historial de movimientos con producto, usuario y fecha.
-- Alertas de stock inferior al mínimo configurado.
-- Interfaz adaptable a pantallas móviles con tablas desplazables horizontalmente.
+## 2. Objetivo general
 
-## Requisitos
+Desarrollar una aplicación web que permita gestionar
+productos y movimientos de inventario utilizando una
+base de datos relacional.
 
-- XAMPP (Apache, PHP 8.x y MariaDB/MySQL).
-- Navegador web.
-- Conexión a internet solo si se quiere cargar Bootstrap desde el CDN definido en las páginas.
+## 3. Actor principal
 
-## Instalación local en Windows
+Encargado de inventario: responsable de administrar
+productos, categorías y movimientos de existencias.
 
-1. Copia **todo el contenido de esta carpeta** a `C:\xampp\htdocs\tecnostock\`.
-2. Inicia **Apache** y **MySQL** desde el panel de XAMPP.
-3. Abre `http://localhost/phpmyadmin`.
-4. Crea una base de datos llamada **`tecnostock`** con cotejamiento `utf8mb4` (por ejemplo, `utf8mb4_unicode_ci`).
-5. Selecciona esa base de datos y entra en **Importar**.
-6. Selecciona **`tecnostock.sql`**, pulsa **Importar / Continuar** y confirma que no haya errores.
-7. Revisa `conexion.php`: la configuración original utiliza `localhost`, usuario `root` y contraseña vacía, como suele ocurrir en una instalación local de XAMPP. Si tu instalación es diferente, ajusta esos valores *solo en tu copia local*.
-8. Accede a `http://localhost/tecnostock/login.php`.
+## 4. Requerimientos funcionales
 
-**Importante:** `tecnostock.sql` es el respaldo actualizado con registros de demostración; `base_datos.sql` es un respaldo **inicial** y no debe importarse después del SQL actualizado. El archivo SQL no incluye `CREATE DATABASE`, por lo que el paso 4 es necesario.
+- RF01: Iniciar sesión.
+- RF02: Registrar productos.
+- RF03: Listar productos.
+- RF04: Buscar productos por nombre, código o categoría.
+- RF05: Editar productos.
+- RF06: Desactivar productos.
+- RF07: Registrar entradas de inventario.
+- RF08: Registrar salidas de inventario.
+- RF09: Actualizar automáticamente el stock.
+- RF10: Mostrar alertas de stock bajo.
 
-## Cuenta de demostración
+## 5. Requerimientos no funcionales
 
-El respaldo incorpora el correo de prueba `admin@tecnostock.cl` y **solo el hash** de su contraseña. La contraseña en texto plano no se incluye en este paquete. Usa la contraseña que configuraste al crear al administrador en tu entorno de pruebas. No reutilices credenciales reales ni publiques contraseñas activas.
+- RNF01: Interfaz clara y responsiva.
+- RNF02: Validaciones en cliente y servidor.
+- RNF03: Conexión mediante PDO.
+- RNF04: Almacenamiento seguro de contraseñas.
+- RNF05: Integridad de la base de datos.
+- RNF06: Funcionamiento en un servidor local.
 
-## Archivos principales
+## 6. Reglas de negocio
 
-| Archivo | Función |
-| --- | --- |
-| `login.php`, `cerrar_sesion.php` | Autenticación y cierre de sesión |
-| `comun.php`, `conexion.php` | Sesión, utilidades y base de datos |
-| `panel.php` | Resumen del inventario |
-| `productos.php`, `producto_form.php`, `producto_desactivar.php` | Gestión de productos |
-| `categorias.php` | Consulta de categorías |
-| `movimientos.php`, `movimiento_form.php` | Consulta y registro de entradas/salidas |
-| `alertas.php` | Productos con existencias bajo el mínimo |
-| `cabecera.php`, `pie.php` | Estructura compartida de la interfaz |
-| `panel.css`, `estilos.css`, `inventario.js` | Estilos e interacciones |
-| `tecnostock.sql` | Respaldo con los datos de prueba |
-| `base_datos.sql` | Versión inicial de la estructura SQL (conservar, no importar después del respaldo final) |
+- RN01: Los códigos de productos deben ser únicos.
+- RN02: Los precios, stocks y cantidades no pueden ser negativos.
+- RN03: Cada movimiento debe registrar fecha, tipo,
+  cantidad, producto y usuario responsable.
+- RN04: Las salidas no pueden generar stock negativo.
+- RN05: Los productos con movimientos deben desactivarse
+  en lugar de eliminarse.
+- RN06: El stock debe actualizarse automáticamente
+  después de cada movimiento válido.
 
-## Estructura de datos
+## 7. Tecnologías utilizadas
 
-Cuatro tablas: `usuarios`, `categorias`, `productos`, `movimientos`. Las relaciones son `productos.id_categoria → categorias.id_categoria`, `movimientos.id_producto → productos.id_producto` y `movimientos.id_usuario → usuarios.id_usuario`.
-
-El respaldo incluido tiene 6 categorías, 6 productos (5 activos, 1 inactivo), 11 movimientos de inventario y 1 usuario. Contiene una alerta de stock bajo para el producto `TEC004` (stock 3, mínimo 5).
-
-## Documentación adicional
-
-- [`documentacion/DOCUMENTACION_TECNICA.md`](documentacion/DOCUMENTACION_TECNICA.md): alcance, requisitos, modelo y reglas de negocio.
-- [`documentacion/MATRIZ_PRUEBAS.md`](documentacion/MATRIZ_PRUEBAS.md): casos y comprobaciones.
-- [`documentacion/GUION_VIDEO.md`](documentacion/GUION_VIDEO.md): guion de demostración de hasta cinco minutos.
-- [`documentacion/LISTA_ENTREGA.md`](documentacion/LISTA_ENTREGA.md): pasos finales y verificación.
-- [`documentacion/REVISION_CODIGO.md`](documentacion/REVISION_CODIGO.md): alcance de la revisión y observaciones.
-
-## Alcance y seguridad
-
-El sistema está pensado para **demostración académica en un servidor local**. Antes de un despliegue público se necesitan medidas adicionales, como un usuario de base de datos con privilegios mínimos, protección de credenciales, HTTPS, limitación de intentos de acceso y copias de seguridad automatizadas. **No publiques información privada real en GitHub.**
-
-**Revisión disponible:** todos los archivos PHP pasaron `php -l` (sintaxis). La ejecución integrada en Apache/MySQL no se ha probado desde este paquete; los resultados de las pruebas funcionales provienen de las comprobaciones reportadas durante el desarrollo.
+- HTML5
+- CSS
+- Bootstrap
+- JavaScript
+- PHP
+- PDO
+- MySQL
+- XAMPP
+- Git
+- GitHub
