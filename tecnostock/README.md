@@ -1,5 +1,8 @@
 # Sistema de Inventario TecnoStock
 
+**Autor:** Jorge Ensignia  
+**Sección:** 301
+
 ## 1. Descripción del problema
 
 TecnoStock es un emprendimiento dedicado a la venta de accesorios tecnológicos. Actualmente utiliza planillas para administrar su inventario, lo que genera códigos duplicados, errores en las cantidades y dificultades para conocer el stock real de los productos.
