@@ -2,22 +2,15 @@
 
 ## 1. Descripción del problema
 
-TecnoStock es un emprendimiento dedicado a la venta de
-accesorios tecnológicos. Actualmente utiliza planillas
-para administrar su inventario, lo que genera códigos
-duplicados, errores en las cantidades y dificultades
-para conocer el stock real de los productos.
+TecnoStock es un emprendimiento dedicado a la venta de accesorios tecnológicos. Actualmente utiliza planillas para administrar su inventario, lo que genera códigos duplicados, errores en las cantidades y dificultades para conocer el stock real de los productos.
 
 ## 2. Objetivo general
 
-Desarrollar una aplicación web que permita gestionar
-productos y movimientos de inventario utilizando una
-base de datos relacional.
+Desarrollar una aplicación web que permita gestionar productos y movimientos de inventario utilizando una base de datos relacional.
 
 ## 3. Actor principal
 
-Encargado de inventario: responsable de administrar
-productos, categorías y movimientos de existencias.
+Encargado de inventario: responsable de administrar productos, categorías y movimientos de existencias.
 
 ## 4. Requerimientos funcionales
 
@@ -45,23 +38,21 @@ productos, categorías y movimientos de existencias.
 
 - RN01: Los códigos de productos deben ser únicos.
 - RN02: Los precios, stocks y cantidades no pueden ser negativos.
-- RN03: Cada movimiento debe registrar fecha, tipo,
-  cantidad, producto y usuario responsable.
+- RN03: Cada movimiento debe registrar fecha, tipo, cantidad, producto y usuario responsable.
 - RN04: Las salidas no pueden generar stock negativo.
-- RN05: Los productos con movimientos deben desactivarse
-  en lugar de eliminarse.
-- RN06: El stock debe actualizarse automáticamente
-  después de cada movimiento válido.
+- RN05: Los productos con movimientos deben desactivarse en lugar de eliminarse.
+- RN06: El stock debe actualizarse automáticamente después de cada movimiento válido.
 
 ## 7. Tecnologías utilizadas
 
-- HTML5
-- CSS
+- HTML y CSS
 - Bootstrap
 - JavaScript
-- PHP
-- PDO
+- PHP (PDO)
 - MySQL
 - XAMPP
-- Git
-- GitHub
+
+## Cuenta de demostración
+
+- **Correo:** `admin@tecnostock.cl`
+- **Contraseña:** `Tecno1234!`
